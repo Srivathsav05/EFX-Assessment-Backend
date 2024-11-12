@@ -40,12 +40,12 @@ public class ProductService {
     }
 
     // Get Products by CategoryName
-    public List<Product> getCategoryName(String name) {
+    public List<Product> getProductByCategory(String name) {
         return productRepository.findByCategoryName(name);
     }
 
     // Get Products by Brand
-    public List<Product> getBrand(String name) {
+    public List<Product> getProductByBrand(String name) {
         return productRepository.findByBrand(name);
     }
 
