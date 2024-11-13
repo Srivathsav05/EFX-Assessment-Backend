@@ -28,6 +28,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    //Get Products through Filters
+    public List<Product> getProducts(String categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
+        return productRepository.findProductsByFilters(categoryName, brand, minPrice, maxPrice, minRating);
+    }
+
     // Get Product by ID
     public Product getProductById(String id) {
         return productRepository.findById(id)
@@ -37,16 +42,6 @@ public class ProductService {
     // Get Product by Name
     public List<Product> getProductByName(String name) {
         return productRepository.findByProductName(name);
-    }
-
-    // Get Products by CategoryName
-    public List<Product> getProductByCategory(String name) {
-        return productRepository.findByCategoryName(name);
-    }
-
-    // Get Products by Brand
-    public List<Product> getProductByBrand(String name) {
-        return productRepository.findByBrand(name);
     }
 
     // Update Product by ID

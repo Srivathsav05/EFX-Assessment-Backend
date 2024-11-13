@@ -20,26 +20,27 @@ public class ProductController {
         return ResponseEntity.ok(productService.createProduct(product));
     }
 
+    @GetMapping("/filters")
+    public List<Product> getProducts(
+            @RequestParam(required = false) String categoryName,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) Double minRating
+    ) {
+        return productService.getProducts(categoryName, brand, minPrice, maxPrice, minRating);
+    }
+
     @GetMapping
     public ResponseEntity<List<Product>> getAllProduct() {
         return ResponseEntity.ok(productService.getAllProduct());
     }
 
-    @GetMapping("/pName/{productName}")
+    @GetMapping("/search/{productName}")
     public ResponseEntity<List<Product>> getProductByName(@PathVariable String productName) {
         return ResponseEntity.ok(productService.getProductByName(productName));
     }
-
-    @GetMapping("/cName/{categoryName}")
-    public ResponseEntity<List<Product>> getProductByCategory(@PathVariable String categoryName) {
-        return ResponseEntity.ok(productService.getProductByCategory(categoryName));
-    }
-
-    @GetMapping("/bName/{brandName}")
-    public ResponseEntity<List<Product>> getProductByBrand(@PathVariable String brandName) {
-        return ResponseEntity.ok(productService.getProductByBrand(brandName));
-    }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable String id, @RequestBody Product product) {
         return ResponseEntity.ok(productService.updateProduct(id, product));
