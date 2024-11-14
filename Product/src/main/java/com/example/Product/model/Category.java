@@ -1,2 +1,9 @@
-package com.example.Product.model;public class Category {
+package com.example.Product.model;
+
+public enum Category {
+    Electronics,
+    Footwear,
+    Clothing,
+    Kitchenware,
+    Furniture
 }

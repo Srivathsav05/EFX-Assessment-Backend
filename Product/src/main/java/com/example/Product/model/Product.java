@@ -16,7 +16,7 @@ public class Product {
     private String id;
     private String productName;
     private String brand;
-    private String categoryName;
+    private Category categoryName;
     private String description;
     private Double price;
     private String imageUrl;

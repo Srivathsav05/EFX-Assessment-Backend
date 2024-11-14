@@ -1,5 +1,6 @@
 package com.example.Product.controller;
 
+import com.example.Product.model.Category;
 import com.example.Product.model.Product;
 import com.example.Product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ProductController {
 
     @GetMapping("/filters")
     public List<Product> getProducts(
-            @RequestParam(required = false) String categoryName,
+            @RequestParam(required = false) Category categoryName,
             @RequestParam(required = false) String brand,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,

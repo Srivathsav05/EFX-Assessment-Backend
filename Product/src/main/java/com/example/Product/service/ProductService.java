@@ -1,6 +1,8 @@
 package com.example.Product.service;
+
 import com.example.Product.exception.ProductNotFoundException;
 import com.example.Product.model.Product;
+import com.example.Product.model.Category; // Import the new enum
 import com.example.Product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +30,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    //Get Products through Filters
-    public List<Product> getProducts(String categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
+    // Get Products by Filters
+    public List<Product> getProducts(Category categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
         return productRepository.findProductsByFilters(categoryName, brand, minPrice, maxPrice, minRating);
     }
 

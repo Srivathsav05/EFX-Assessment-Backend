@@ -1,6 +1,7 @@
 package com.example.Product.repository;
 
 import com.example.Product.model.Product;
+import com.example.Product.model.Category; // Import the new enum
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-//Filtering
 @Repository
 public class ProductCustomRepositoryImpl implements ProductCustomRepository {
 
@@ -18,11 +18,11 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Product> findProductsByFilters(String categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
+    public List<Product> findProductsByFilters(Category categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
         Query query = new Query();
         List<Criteria> criteria = new ArrayList<>();
 
-        if (categoryName != null && !categoryName.isEmpty()) {
+        if (categoryName != null) {
             criteria.add(Criteria.where("categoryName").is(categoryName));
         }
 
