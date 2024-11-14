@@ -40,7 +40,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProductByName(@PathVariable String productName) {
         return ResponseEntity.ok(productService.getProductByName(productName));
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable String id, @RequestBody Product product) {
         return ResponseEntity.ok(productService.updateProduct(id, product));
