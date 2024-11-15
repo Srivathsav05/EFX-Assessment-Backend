@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends MongoRepository<Product, String>, ProductCustomRepository{
+public interface ProductRepository extends MongoRepository<Product, String>, Filter{
 
     List<Product> findByProductName(String name);
 

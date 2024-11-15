@@ -5,6 +5,6 @@ import com.example.Product.model.Product;
 
 import java.util.List;
 
-public interface ProductCustomRepository {
+public interface Filter {
     List<Product> findProductsByFilters(Category categoryName, String brand, Double minPrice, Double maxPrice, Double minRating);
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductCustomRepositoryImpl implements ProductCustomRepository {
+public class FilterImpl implements Filter {
 
     @Autowired
     private MongoTemplate mongoTemplate;
