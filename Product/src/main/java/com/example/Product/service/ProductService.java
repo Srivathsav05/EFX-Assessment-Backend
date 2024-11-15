@@ -31,7 +31,7 @@ public class ProductService {
     }
 
     // Get Products by Filters
-    public List<Product> getProducts(Category categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
+    public List<Product> getProducts(Category categoryName, List<String> brand, Double minPrice, Double maxPrice, Double minRating) {
         return productRepository.findProductsByFilters(categoryName, brand, minPrice, maxPrice, minRating);
     }
 

@@ -18,7 +18,7 @@ public class FilterImpl implements Filter {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Product> findProductsByFilters(Category categoryName, String brand, Double minPrice, Double maxPrice, Double minRating) {
+    public List<Product> findProductsByFilters(Category categoryName, List<String> brands, Double minPrice, Double maxPrice, Double minRating) {
         Query query = new Query();
         List<Criteria> criteria = new ArrayList<>();
 
@@ -26,8 +26,8 @@ public class FilterImpl implements Filter {
             criteria.add(Criteria.where("categoryName").is(categoryName));
         }
 
-        if (brand != null && !brand.isEmpty()) {
-            criteria.add(Criteria.where("brand").is(brand));
+        if (brands != null && !brands.isEmpty()) {
+            criteria.add(Criteria.where("brand").in(brands));
         }
 
         if (minPrice != null && maxPrice != null) {

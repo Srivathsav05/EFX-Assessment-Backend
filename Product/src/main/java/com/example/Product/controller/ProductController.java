@@ -25,7 +25,7 @@ public class ProductController {
     @GetMapping("/filters")
     public List<Product> getProducts(
             @RequestParam(required = false) Category categoryName,
-            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) List<String> brand,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) Double minRating
