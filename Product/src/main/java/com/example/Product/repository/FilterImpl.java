@@ -45,7 +45,6 @@ public class FilterImpl implements Filter {
         if (!criteria.isEmpty()) {
             query.addCriteria(new Criteria().andOperator(criteria.toArray(new Criteria[0])));
         }
-
         return mongoTemplate.find(query, Product.class);
     }
 }
