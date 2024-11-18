@@ -28,12 +28,18 @@ public class ProductService {
 
     // Get All Products
     public List<Product> getAllProduct() {
-        return productRepository.findAll();
+        List<Product> product = productRepository.findAll();
+        if (!product.isEmpty())
+            return product;
+        throw new ProductNotFoundException("Products not found");
     }
 
     // Get Products by Filters
     public List<Product> getProducts(Category categoryName, List<String> brand, Double minPrice, Double maxPrice, Double minRating) {
-        return productRepository.findProductsByFilters(categoryName, brand, minPrice, maxPrice, minRating);
+        List<Product> product = productRepository.findProductsByFilters(categoryName, brand, minPrice, maxPrice, minRating);
+        if (!product.isEmpty())
+            return product;
+        throw new ProductNotFoundException("Product not found with this fields");
     }
 
     // Get Product by ID
