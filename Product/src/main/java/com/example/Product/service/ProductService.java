@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -43,22 +44,29 @@ public class ProductService {
 
     // Get Product by Name
     public List<Product> getProductByName(String name) {
-        return productRepository.findByProductName(name);
+        List<Product> searchResults= productRepository.findByProductName(name);
+        if (!searchResults.isEmpty())
+            return searchResults;
+        throw new ProductNotFoundException("No product Found");
     }
 
     // Update Product by ID
     public Product updateProduct(String id, Product updatedProductData) {
-        Product existingProduct = getProductById(id);
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if(existingProduct.isPresent())
+        {
+            existingProduct.get().setProductName(updatedProductData.getProductName());
+            existingProduct.get().setBrand(updatedProductData.getBrand());
+            existingProduct.get().setPrice(updatedProductData.getPrice());
+            existingProduct.get().setDescription(updatedProductData.getDescription());
+            existingProduct.get().setCategoryName(updatedProductData.getCategoryName());
+            existingProduct.get().setRating(updatedProductData.getRating());
+            existingProduct.get().setImageUrl(updatedProductData.getImageUrl());
+            return productRepository.save(existingProduct.get());
 
-        existingProduct.setProductName(updatedProductData.getProductName());
-        existingProduct.setBrand(updatedProductData.getBrand());
-        existingProduct.setPrice(updatedProductData.getPrice());
-        existingProduct.setDescription(updatedProductData.getDescription());
-        existingProduct.setCategoryName(updatedProductData.getCategoryName());
-        existingProduct.setRating(updatedProductData.getRating());
-        existingProduct.setImageUrl(updatedProductData.getImageUrl());
+        }
+        throw new ProductNotFoundException("Product is not Found id" + id);
 
-        return productRepository.save(existingProduct);
     }
 
     // Delete Product by ID
