@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -36,6 +37,11 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProduct() {
         return ResponseEntity.ok(productService.getAllProduct());
+    }
+
+    @GetMapping("/brands")
+    public ResponseEntity<Set<String>> getBrands() {
+        return ResponseEntity.ok(productService.getBrands());
     }
 
     @GetMapping("/search/{productName}")

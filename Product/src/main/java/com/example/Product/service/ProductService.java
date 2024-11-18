@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -40,6 +42,13 @@ public class ProductService {
         if (!product.isEmpty())
             return product;
         throw new ProductNotFoundException("Product not found with this fields");
+    }
+
+    public Set<String> getBrands(){
+        return productRepository.findAll()
+                .stream()
+                .map(Product::getBrand)
+                .collect(Collectors.toSet());
     }
 
     // Get Product by ID
